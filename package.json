@@ -1,0 +1,88 @@
+{
+  "name": "strapi-provider-stytch",
+  "version": "0.1.0",
+  "description": "Strapi - Stytch Authentication Provider",
+  "strapi": {
+    "name": "stytch",
+    "displayName": "Stytch",
+    "description": "Utilizing stytch for a streemlined developer experiance when authenticating with almost any authenitciation method",
+    "kind": "plugin"
+  },
+  "scripts": {
+    "publish:latest": "cd build && npm publish --tag latest",
+    "prepublish:latest": "npm run clean && npm run build && node build/setup-package.js",
+    "build": "yarn run build && yarn copy-translations",
+    "build:dev": "yarn run build && cp ./package.json ./build",
+    "copy-translations": "copyfiles admin/src/translations/*.json build/",
+    "clean": "rm -rf build",
+    "develop": "nodemon --exec \"yarn build:dev\"",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unenunciate/strapi-provider-stytch"
+  },
+  "dependencies": {
+    "@strapi/plugin-graphql": "^4.3.0",
+    "@strapi/utils": "^4.3.0",
+    "stytch": "^5.12.1"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "koa": "2.13.3",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.0",
+    "rimraf": "^3.0.2"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "4.x"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "./build/**/*"
+    ],
+    "ext": "js,json"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format"
+    }
+  },
+  "authors": [
+    {
+      "name": "Unenunciate",
+      "email": "patrick@unenunciate.com",
+      "url": "https://unenunciate.com"
+    },
+    {
+      "name": "Shadicar",
+      "email": "",
+      "url": "https://"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "Unenunciate",
+      "email": "patrick@unenunciate.com",
+      "url": "https://unenunciate.com"
+    },
+    {
+      "name": "Shadicar",
+      "email": "",
+      "url": "https://"
+    }
+  ],
+  "engines": {
+    "node": ">=14.19.1 <=17.x.x",
+    "npm": ">=7.x.x"
+  },
+  "keywords": [
+    "strapi",
+    "plugin",
+    "provider",
+    "stytch",
+    "authenticiation"
+  ],
+  "license": "MIT"
+}
